@@ -14,25 +14,35 @@ import th.ac.ku.atm.service.BankAccountService;
 @RequestMapping("/bankaccount")
 public class BankAccountController {
 
-    private final BankAccountService bankAccountService;
+    private BankAccountService bankAccountService;
 
-    public BankAccountController(BankAccountService bankAccountService) {
+    BankAccountController(BankAccountService bankAccountService) {
         this.bankAccountService = bankAccountService;
     }
 
     @GetMapping
     public String getBankAccountPage(Model model) {
-        model.addAttribute("bankAccountList", bankAccountService.getBankAccountList());
+        model.addAttribute("bankaccount", bankAccountService.getBankAccounts());
         return "bankaccount";
     }
 
+//    @PostMapping
+//    public String createBankAccount(@ModelAttribute BankAccount bankAccount, Model model) {
+//        Customer matchingCustomer = bankAccountService.checkCustomer(bankAccount.getCustomerId());
+//        if (matchingCustomer != null) {
+//            bankAccountService.createBankAccount(bankAccount);
+//            model.addAttribute("bankaccount", bankAccountService.getBankAccounts());
+//        }
+//        return "bankaccount";
+//    }
+
     @PostMapping
-    public String createBankAccount(@ModelAttribute BankAccount bankAccount, Model model) {
-        Customer matchingCustomer = bankAccountService.checkCustomer(bankAccount.getCustomerId());
-        if (matchingCustomer != null) {
-            bankAccountService.createBankAccount(bankAccount);
-            model.addAttribute("bankAccountList", bankAccountService.getBankAccountList());
-        }
-        return "bankaccount";
+    public String openAccount(@ModelAttribute BankAccount bankAccount, Model model) {
+//        bankAccountService.openAccount(bankAccount);
+        model.addAttribute("bankaccounts",bankAccountService.getBankAccounts());
+        return "redirect:bankaccount";
     }
+
+
+
 }
