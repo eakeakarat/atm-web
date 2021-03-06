@@ -17,9 +17,9 @@ public class CustomerRestController {
     @Autowired
     private CustomerService customerService;
 
-    public CustomerRestController(CustomerService customerService) {
-        this.customerService = customerService;
-    }
+//    public CustomerRestController(CustomerService customerService) {
+//        this.customerService = customerService;
+//    }
 
     @GetMapping
     public List<Customer> getAll() {

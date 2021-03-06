@@ -6,12 +6,12 @@ public class BankAccount {
     private String type;
     private double balance;
 
-    public BankAccount(int id, int customerId, String type, double balance) {
-        this.id = id;
-        this.customerId = customerId;
-        this.type = type;
-        this.balance = balance;
-    }
+//    public BankAccount(int id, int customerId, String type, double balance) {
+//        this.id = id;
+//        this.customerId = customerId;
+//        this.type = type;
+//        this.balance = balance;
+//    }
 
 
     public int getId() {
@@ -45,4 +45,7 @@ public class BankAccount {
     public void setBalance(double balance) {
         this.balance = balance;
     }
+
+
+
 }

@@ -12,15 +12,17 @@ import java.util.NoSuchElementException;
 
 @Service
 public class CustomerService {
+
     private CustomerRepository repository;
-    private List<Customer> customerList;
+//    private List<Customer> customerList;
+
+//    @PostConstruct
+//    public void postConstruct() {
+//        this.customerList = new ArrayList<>();
+//    }
 
     public CustomerService(CustomerRepository repository) {
         this.repository = repository;
-    }
-    @PostConstruct
-    public void postConstruct() {
-        this.customerList = new ArrayList<>();
     }
 
     public void createCustomer(Customer customer) {

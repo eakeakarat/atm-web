@@ -1,5 +1,6 @@
 package th.ac.ku.atm.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,13 +15,15 @@ import th.ac.ku.atm.service.CustomerService;
 @RequestMapping("/login")
 public class LoginController {
 
-    private final CustomerService customerService;
+    @Autowired
+    private CustomerService customerService;
+    @Autowired
     private BankAccountService bankAccountService;
 
-    public LoginController(CustomerService customerService, BankAccountService bankAccountService) {
-        this.customerService = customerService;
-        this.bankAccountService = bankAccountService;
-    }
+//    public LoginController(CustomerService customerService, BankAccountService bankAccountService) {
+//        this.customerService = customerService;
+//        this.bankAccountService = bankAccountService;
+//    }
 
     @GetMapping
     public String getLoginPage() {
@@ -32,15 +35,15 @@ public class LoginController {
         Customer storedCustomer = customerService.checkPin(customer);
 
         if (storedCustomer != null) {
-            model.addAttribute("customertitle", storedCustomer.getName() + " Bank Accounts");
+            model.addAttribute("customertitle",
+                    storedCustomer.getName() + " Bank Accounts");
             model.addAttribute("bankaccounts",
-                    bankAccountService.getCustomerBankAccount(customer.getId()));
+                    bankAccountService.getCustomerBankAccount(storedCustomer.getId()));
             return "customeraccount";
         } else {
             model.addAttribute("greeting", "Can't find customer");
-            return "home";
         }
-
+        return "home";
     }
 
 }

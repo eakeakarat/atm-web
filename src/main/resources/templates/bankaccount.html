@@ -6,7 +6,7 @@
 <div class="container" layout:fragment="content">
 
     <h1>Open Bank Account</h1>
-    <form th:action="@{/bankaccount}" method="POST">
+    <form method="POST" th:action="@{/bankaccount}">
 
         <div class="form-group">
             <label for="inputCustomer">Customer Id</label>
@@ -39,14 +39,18 @@
             <th>CustomerId</th>
             <th>Type</th>
             <th>Balance</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="account : ${bankaccount}">
+        <tr th:each="account : ${allBankAccounts}">
             <td th:text="${account.id}"></td>
             <td th:text="${account.customerId}"></td>
             <td th:text="${account.type}"></td>
             <td th:text="${account.balance}"></td>
+            <td>
+                <a class="btn btn-primary" th:href="@{/bankaccount/edit/{id}(id=${account.id})}">Edit</a>
+            </td>
         </tr>
         </tbody>
     </table>
